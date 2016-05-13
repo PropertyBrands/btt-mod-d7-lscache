@@ -1,0 +1,3 @@
+name = LSCache
+description = Provides integration with LSCache library for storing data client side.
+core = 7.x

@@ -1,0 +1,38 @@
+<?php
+/**
+ * Implements hook_libraries_info().
+ */
+function lscache_libraries_info() {
+  $libraries = array();
+  $libraries['lscache'] = array(
+    'name' => 'LSCache',
+    'vendor url' => 'https://github.com/pamelafox/lscache',
+    'download url' => 'https://github.com/pamelafox/lscache',
+    'version arguments' => array(
+      'file' => 'bower.json',
+      'pattern' => '/"version": (.+)/',
+    ),
+    'files' => array(
+      'js' => array(
+        'lscache.min.js',
+      ),
+    ),
+  );
+
+  $libraries['lscache_interface'] = array(
+    'name' => 'LSCache Interface',
+    'vendor url' => 'https://bluetent.com',
+    'download url' => 'https://bluetent.com',
+    'version' => '1',
+    'library path' => drupal_get_path('module', 'lscache') . '/js',
+    'files' => array(
+      'js' => array(
+        'CacheInterface.js',
+      ),
+    ),
+    'dependencies' => array(
+      'lscache'
+    ),
+  );
+  return $libraries;
+}
