@@ -79,18 +79,27 @@ CacheInterface.Bucket = CacheInterface.Class.extend({
   },
 
   setItem: function(key, value, expires) {
+    var item = LZString.compressToUTF16(JSON.stringify({
+      value: value
+    }))
 
     if(!expires) {
       expires = this.defaultLifetime;
     }
 
     lscache.setBucket(this.bucket);
-    lscache.set(key, value, expires);
+    lscache.set(key, item, expires);
   },
 
   getItem: function(key) {
+    var val, stored;
     lscache.setBucket(this.bucket);
-    return lscache.get(key);
+    val = lscache.get(key);
+    if(val) {
+      stored = JSON.parse(LZString.decompressFromUTF16(val))
+      val = stored.value
+    }
+    return val;
   },
 
   flush: function(expired) {

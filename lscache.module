@@ -14,7 +14,23 @@ function lscache_libraries_info() {
     ),
     'files' => array(
       'js' => array(
-        'lscache.min.js',
+        'lscache.js',
+      ),
+    ),
+  );
+
+  $libraries['lzstring'] = array(
+    'name' => 'LZ String',
+    'vendor url' => 'https://github.com/pieroxy/lz-string/',
+    'download url' => 'https://github.com/pieroxy/lz-string/',
+    'version arguments' => array(
+      'file' => 'bower.json',
+      'pattern' => '/"version": (.+)/',
+    ),
+    'path' => 'libs',
+    'files' => array(
+      'js' => array(
+        'lz-string.js',
       ),
     ),
   );
@@ -31,7 +47,8 @@ function lscache_libraries_info() {
       ),
     ),
     'dependencies' => array(
-      'lscache'
+      'lzstring',
+      'lscache',
     ),
   );
   return $libraries;
